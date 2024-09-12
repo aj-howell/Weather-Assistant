@@ -33,7 +33,7 @@ yarn-error.*
 *.tsbuildinfo
 
 # miscellaneous
-*.DS_Store
+yarn.lock
 
 # macOS
 .DS_Store
