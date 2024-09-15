@@ -9,10 +9,10 @@ var imageRouter = require('./routes/image');
 var chatRouter = require('./routes/chat');
 
 var app = express();
-app.set('view engine', 'html');
+// app.set('view engine', 'html');
 
 app.use(logger('dev'));
-app.use(express.json());
+app.use(express.json({limit: "10mb"})); //we have to set the limit to the image sizes that we can send-> should figure out how to compress images just incase
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,7 +34,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 module.exports = app;

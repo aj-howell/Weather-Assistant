@@ -39,12 +39,14 @@ describe('testing Gemini API File Processing', () => {
     test('result should be a string',  async() => {
         
         //simulating getting file from device & creating a base64 string to send over
-        const image = await fs.readFile("C:/Users/anazj/Downloads/book.jpg");
+        const image = await fs.readFile("C:/Users/anazj/Downloads/laptop.png");
         const buff = Buffer.from(image).toString('base64')
+
+        console.log("this is the string: "+buff);
 
         const result = await testPhoto(buff);
 
-        console.log(result);
+       // console.log(result);
         
         expect(result).toBeInstanceOf(String);
     }, 10000);

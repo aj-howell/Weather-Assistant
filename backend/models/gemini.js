@@ -1,6 +1,7 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+require('dotenv').config()
 
-const genAI = new GoogleGenerativeAI("AIzaSyDTz5CAUngeSKOgiKcnq3KqW_Dnx_q3unQ"); // add an enviornment variable {API_KEY}
+const genAI = new GoogleGenerativeAI(process.env.API_KEY); // add an enviornment variable {API_KEY}
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); //future idea using this as a singleton
 
 
@@ -49,7 +50,7 @@ function fileToGenerativePart(bufferString, mimeType) {
 const sendPhoto = async(base64String) =>
 {   
     try {
-        const image = fileToGenerativePart(base64String, "image/png");
+        const image = fileToGenerativePart(base64String, "image/jpeg");
         const result = await model.generateContent(["Describe this photo in detail", image]);
         const res = await result.response.text();
         
